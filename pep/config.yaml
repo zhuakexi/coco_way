@@ -1,10 +1,9 @@
 pep_version: 2.0.0
 sample_table: "sample_table.csv"
+subsample_table: "subsample_table1.csv"
 sample_modifiers:
-  append:
-    ana_home: /share/Data/ychi/repo/bicell
   derive:
-    attribute: [directory]
+    attributes: [directory]
     sources:
       xqm4: /share/Data/ychi/raw/xqm4/Rawdata/{sample_name}
       xqm3: /share/Data/ychi/raw/xqm3/Rawdata/{sample_name}

@@ -1,9 +1,10 @@
-"""Snakemake wrapper for bwa-mem """
+""" Snakemake wrapper for bwa-mem """
 __author__ = "Y Chi"
 __copyright__ = "Copyright 2020, Y Chi"
 __email__ = "zhuakexi@126.com"
 __license__ = "MIT"
 from snakemake.shell import shell
+import os
 extra = snakemake.params.get("extra")
 
 shell(
@@ -12,6 +13,6 @@ shell(
     "{extra}"
     "-t {snakemake.threads}" 
     "{snakemake.params.index}"
-    "{snakemake.input}" 
+    "{snakemake.input.R1} {snakemake.input.R2}" 
     "2> {snakemake.log} | gzip > {snakemake.output}"
 )
