@@ -1,7 +1,5 @@
 software:
 ref:
   bwa: /share/home/ychi/software/bwa_index/GRCh38/genome.fa # bwa index file
-dirs:
-  bwa: 
 cpu:
   bwa: 8 
