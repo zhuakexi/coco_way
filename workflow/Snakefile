@@ -33,19 +33,19 @@ rule bwa_mem:
         " ------> bwa : {wildcards.sample} : {threads} cores"
     wrapper:
         # wrapper shipped with conda yaml
-        "file:../wrappers/zhuakexi/bwa_mem2"
+        "file:./wrappers/zhuakexi/bwa_mem2"
 rule sam2seg:
     input:
-        bwa_mem.output
+        rules.bwa_mem.output
     output:
         os.path.join(ana_home, "seg", "{sample}.seg.gz")
     params:
         snp = config["snp"],
         sex = config["sex"],
-        snp_file = config["ref"]["snp"]
-        par_file = config["ref"]["par"]
-        k8 = config["software"]["k8"]
-        js = config["software"]["js"]
+        snp_file = config["ref"]["snp"],
+        par_file = config["ref"]["par"],
+        k8 = config["software"]["k8"],
+        js = config["software"]["js"],
     resources:
         nodes = 1
     log:
@@ -53,8 +53,11 @@ rule sam2seg:
     message:
         " ------> sam2seg : {wildcards.sample} : 1 core"
     wrapper:
-        "file:../wrappers/zhuakexi/sam2seg"
-include("rules/seg2pairs.smk")
-rule all:
+        "file:./wrappers/zhuakexi/sam2seg"
+include: "rules/seg2pairs.smk"
+include: "rules/clean_pairs.smk"
+include: "rules/impute.smk"
+rule All:
     input:
-        expand(rules.bwa_mem.output, sample=pep.sample_table["sample_name"])
+        expand(rules.impute.output, sample=pep.sample_table["sample_name"]),
+        expand(rules.pairs_info.output, sample=pep.sample_table["sample_name"])
