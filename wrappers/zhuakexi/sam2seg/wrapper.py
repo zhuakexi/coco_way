@@ -21,7 +21,7 @@ output = snakemake.output
 if snp == "using":
     if sex == "female":
         shell(
-            " {k8} {js} sam2seg -v {snp_file} {input} 2 > {log} "
+            " {k8} {js} sam2seg -v {snp_file} {input} 2> {log} "
             " | {k8} {js} chronly -y - "
             " | sed 's/-/+/g' "
             " | gzip > {output} "
