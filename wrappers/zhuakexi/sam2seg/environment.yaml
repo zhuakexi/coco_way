@@ -1,3 +1,5 @@
-name: sam2seg
+name: blank
 channels:
-dependencies:
+  - bioconda
+  - conda-forge
+  - defaults
