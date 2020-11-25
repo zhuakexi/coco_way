@@ -6,13 +6,19 @@ __license__ = "MIT"
 from snakemake.shell import shell
 import os
 extra = snakemake.params.get("extra")
+threads = snakemake.threads
+index = snakemake.params.index
+input = snakemake.input
+log = snakemake.log
+output = snakemake.output
 
 shell(
-    "bwa-mem2 mem"
-    "-5SP"
-    "{extra}"
-    "-t {snakemake.threads}" 
-    "{snakemake.params.index}"
-    "{snakemake.input.R1} {snakemake.input.R2}" 
-    "2> {snakemake.log} | gzip > {snakemake.output}"
+    " bwa-mem2 mem "
+    " -5SP "
+    " {extra} "
+    " -t {threads} "
+    " {index} "
+    " {input.R1} {input.R2} " 
+    " 2> {log} "
+    " | gzip > {output} "
 )
