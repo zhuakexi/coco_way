@@ -1,8 +1,12 @@
+import os
+
 configfile: "config/config.yaml"
-pepfile: "pep/config.yaml"
-ana_home = config["ana_home"]
-#raw_input_directory = pep.sample_table["directory"]["{wildcards.sample}"]
-#ana_home = pep.sample_table["ana_home"]["{wildcards.sample}"]
+pepfile: "pep/config.yaml" # using PEP to define samples with meta data
+ana_home = config["ana_home"] # home directory of all analysis results
+
+def log_path(file):
+    return os.path.join(ana_home, "logs", "{sample}", file)
+
 def get_pep_fq(wildcards):
     # For protability, mapping inputs are in pep's config file. Change for every host env.
     # Mapping key in pep's main table ("directory"). Won't change much if data are stored in good manner.
@@ -21,8 +25,35 @@ rule bwa_mem:
         extra = r"-R '@RG\tID:{sample}\tPL:ILLUMINA\tSM:{sample}'"
     threads: 
         config["cpu"]["bwa"]
+    resources:
+        nodes = config["cpu"]["bwa"]
+    log:
+        os.path.join(ana_home, "logs", "{sample}", "bwa.log")
+    message:
+        " ------> bwa : {wildcards.sample} : {threads} cores"
     wrapper:
-        "file://wrappers/zhuakexi/bwa_mem2"
+        # wrapper shipped with conda yaml
+        "file:./wrappers/zhuakexi/bwa_mem2"
+rule sam2seg:
+    input:
+        bwa_mem.output
+    output:
+        os.path.join(ana_home, "seg", "{sample}.seg.gz")
+    params:
+        snp = config["snp"],
+        sex = config["sex"],
+        snp_file = config["ref"]["snp"]
+        par_file = config["ref"]["par"]
+        k8 = config["software"]["k8"]
+        js = config["software"]["js"]
+    resources:
+        nodes = 1
+    log:
+        log_path("sam2seg.log")
+    message:
+        " ------> sam2seg : {wildcards.sample} : 1 core"
+    wrapper:
+        "file:./wrappers/zhuakexi/sam2seg"
 rule all:
     input:
         expand(rules.bwa_mem.output, sample=pep.sample_table["sample_name"])
