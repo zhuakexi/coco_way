@@ -19,4 +19,6 @@ ref:
   annotation: /share/home/ychi/software/gencode.v33.primary_assembly.annotation.gtf
 ana_home: /share/Data/ychi/repo/bicell # home directory for all result files
 cpu: # threads using
-  bwa: 8 
+  bwa: 8
+  clean1: 8
+  clean2: 8 

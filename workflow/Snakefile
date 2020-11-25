@@ -33,7 +33,7 @@ rule bwa_mem:
         " ------> bwa : {wildcards.sample} : {threads} cores"
     wrapper:
         # wrapper shipped with conda yaml
-        "file:./wrappers/zhuakexi/bwa_mem2"
+        "file:../wrappers/zhuakexi/bwa_mem2"
 rule sam2seg:
     input:
         bwa_mem.output
@@ -53,7 +53,8 @@ rule sam2seg:
     message:
         " ------> sam2seg : {wildcards.sample} : 1 core"
     wrapper:
-        "file:./wrappers/zhuakexi/sam2seg"
+        "file:../wrappers/zhuakexi/sam2seg"
+include("rules/seg2pairs.smk")
 rule all:
     input:
         expand(rules.bwa_mem.output, sample=pep.sample_table["sample_name"])
