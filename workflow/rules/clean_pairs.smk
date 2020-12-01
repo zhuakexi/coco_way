@@ -10,7 +10,7 @@ rule clean1:
     threads: config["cpu"]["clean1"]
     resources: nodes = config["cpu"]["clean1"]
     conda: "../envs/hires.yaml"
-    message: "clean_pairs_stage1 : {wildcards.sample} : {threads} cores."
+    message: " ------> clean_pairs_stage1 : {wildcards.sample} : {threads} cores."
     shell: "python {hires} clean_leg -t {threads} -o {output} {input}  1> {log.result} 2> {log.log}"
 
 rule clean12:
@@ -22,5 +22,5 @@ rule clean12:
     threads: config["cpu"]["clean2"]
     resources: nodes = config["cpu"]["clean2"]
     conda: "../envs/hires.yaml"
-    message: "clean_pairs_stage2 : {wildcards.sample} : {threads} cores."
+    message: " ------> clean_pairs_stage2 : {wildcards.sample} : {threads} cores."
     shell: "python {hires} clean_isolated -t {threads} -o {output} {input} 1> {log.result} 2> {log.log}"
