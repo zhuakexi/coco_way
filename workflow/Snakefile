@@ -12,8 +12,10 @@ def get_pep_fq(wildcards):
     # Mapping key in pep's main table ("directory"). Won't change much if data are stored in good manner.
     # Files in pep's sub table. Won't change much too.
     sample = wildcards.sample
-    R1_path = os.path.join(pep.sample_table["directory"][sample], pep.sample_table["R1_file"][sample][0])
-    R2_path = os.path.join(pep.sample_table["directory"][sample], pep.sample_table["R2_file"][sample][0])
+    #R1_path = os.path.join(pep.sample_table["directory"][sample], pep.sample_table["R1_file"][sample][0])
+    R1_path = os.path.join(pep.sample_table["directory"][sample], sample+"_R1.fq.gz"),
+    #R2_path = os.path.join(pep.sample_table["directory"][sample], pep.sample_table["R2_file"][sample][0])
+    R2_path = os.path.join(pep.sample_table["directory"][sample], sample+"_R2.fq.gz"),
     return {"R1" : R1_path, "R2" : R2_path}
 rule bwa_mem:
     input:
