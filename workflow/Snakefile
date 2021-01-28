@@ -3,7 +3,7 @@ import pandas as pd
 
 configfile: "config/config.yaml"
 ana_home = config["ana_home"] # home directory of all analysis results
-sample_table = pd.read_csv("config/sample_table.csv, index_col=0")
+sample_table = pd.read_csv("config/sample_table.csv", index_col=0)
 
 def log_path(file):
     return os.path.join(ana_home, "logs", "{sample}", file)
@@ -59,6 +59,6 @@ include: "rules/build.smk"
 #include: "rules/align3d.smk"
 rule All:
     input:
-        expand(rules.build.output, sample=pep.sample_table["sample_name"], rep=list(range(1,6))),
+        #expand(rules.build.output, sample=pep.sample_table["sample_name"], rep=list(range(1,6))),
         #expand(rules.impute.output, sample=pep.sample_table["sample_name"]),
-        expand(rules.pairs_info.output, sample=pep.sample_table["sample_name"])
+        expand(rules.pairs_info.output, sample=sample_table.index)
