@@ -31,7 +31,8 @@ rule raw_pairs:
         """
 # qualitive statistic of experiments 
 rule pairs_info:
-    input: 
+    input:
+        R1 = rules.bwa_mem.input.R1, 
         pairs_log = rules.seg2pairs.log,
         pairs = rules.seg2pairs.output,
         raw_pairs_log = rules.raw_pairs.log,
@@ -48,6 +49,7 @@ rule pairs_info:
     message: "pairs_info : {wildcards.sample} : {threads} cores"
     shell:
         """
+        reads=$(zgrep -c $ {input.R1})
         dup_line=$(grep {params.dedup} {input.pairs_log}) # extract critic line in log
         dup_rate=${{dup_line%%\%*}};dup_rate=${{dup_rate##* }} # extract dup_rate
         dup_num=${{dup_line%% /*}};dup_num=${{dup_num##* }} #dup_num
@@ -56,6 +58,6 @@ rule pairs_info:
         intra=$(zcat {input.pairs} | grep -v {params.comment} | awk '{params.intra}') # percent intra
         raw_intra=$(zcat {input.raw_pairs} | grep -v {params.comment} | awk '{params.intra}') # percent intra before dedup
         phased=$(zcat {input.pairs} | grep -v {params.comment} | awk '{params.phased}') # percent leg phased
-        echo {wildcards.sample} ${{raw_con}} ${{raw_intra}} ${{dup_rate}} ${{con}} ${{intra}} ${{phased}} > {output}
+        echo {wildcards.sample},$reads,$raw_con,$raw_intra,$dup_rate,$con,$intra,$phased > {output}
         """
     
