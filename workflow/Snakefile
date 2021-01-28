@@ -23,7 +23,7 @@ rule count_reads:
     message:
         " ----> count_reads :{wildcards.sample} : {threads} cores"
     wrapper:
-        "file:./wrapper/zhuakexi/count_reads"
+        "file:./wrappers/zhuakexi/count_reads"
 rule bwa_mem:
     input:
         unpack(get_raw_fq)
