@@ -32,7 +32,7 @@ rule raw_pairs:
 # qualitive statistic of experiments 
 rule pairs_info:
     input:
-        R1 = rules.bwa_mem.input.R1, 
+        reads = rules.count_reads.output, 
         pairs_log = rules.seg2pairs.log,
         pairs = rules.seg2pairs.output,
         raw_pairs_log = rules.raw_pairs.log,
@@ -49,7 +49,7 @@ rule pairs_info:
     message: "pairs_info : {wildcards.sample} : {threads} cores"
     shell:
         """
-        reads=$(zgrep -c $ {input.R1})
+        reads=$(cat {input.reads})
         dup_line=$(grep {params.dedup} {input.pairs_log}) # extract critic line in log
         dup_rate=${{dup_line%%\%*}};dup_rate=${{dup_rate##* }} # extract dup_rate
         dup_num=${{dup_line%% /*}};dup_num=${{dup_num##* }} #dup_num

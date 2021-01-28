@@ -12,6 +12,17 @@ def get_raw_fq(wildcards):
     R1_path = sample_table.loc[sample, "R1_file"],
     R2_path = sample_table.loc[sample, "R2_file"]
     return {"R1":R1_path, "R2":R2_path}
+rule count_reads:
+    input:
+        unpack(get_raw_fq)
+    output:
+        os.path.join(ana_home,"info","{sample}.info")
+    threads: 1
+    resources: 1
+    message:
+        " ----> count_reads :{wildcards.sample} : {threads} cores"
+    wrapper:
+        "file:./wrapper/zhuakexi/count_reads"
 rule bwa_mem:
     input:
         unpack(get_raw_fq)
