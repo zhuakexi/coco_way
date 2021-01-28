@@ -1,5 +1,5 @@
 import os
-rule build:
+rule collect_info:
     input: expand(rules.pairs_info.output, sample=sample_table.index)
     output:
         os.path.join(ana_home, "contacts_info.csv")
