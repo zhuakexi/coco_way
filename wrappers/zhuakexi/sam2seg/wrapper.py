@@ -33,7 +33,7 @@ if snp == "using":
             " | {k8} {js} chronly - "
             " | {k8} {js} bedflt {par_file} - "
             " | sed 's/-/+/g' "
-            " gzip > {output} "
+            " |gzip > {output} "
             )
     else:
         raise ValueError("sex must be female or male and set in config.yaml")
