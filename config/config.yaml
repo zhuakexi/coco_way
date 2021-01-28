@@ -3,7 +3,6 @@ software: # temp workaround only, using conda build in the future
   k8: /share/home/ychi/software/hickit/k8
   js: /share/home/ychi/software/hickit/hickit.js
   hires: /share/home/ychi/software/hires-utils/hires.py
-  hires_index: /share/home/ychi/software/hires-utils/bin_10k_FULL_index
   dip-c: /share/home/ychi/software/dip-c/dip-c
   pairs2con: /share/home/ychi/software/dip-c/scripts/hickit_pairs_to_con.sh
   impute2con: /share/home/ychi/software/dip-c/scripts/hickit_impute_pairs_to_con.sh
