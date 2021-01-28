@@ -9,16 +9,16 @@ software: # temp workaround only, using conda build in the future
   impute2con: /share/home/ychi/software/dip-c/scripts/hickit_impute_pairs_to_con.sh
   rescale: "/share/home/ychi/software/dip-c/scripts/hickit_3dg_to_3dg_rescale_unit.sh"
   color_file: "/share/Data/ychi/genome/GRCh38.chr.fem.txt"
-sex: female # male | female, sex of sample, required for sam2seg
-snp: using # using | *, whether got snp file, required for sam2seg
 ref:
-  bwa: /share/Data/ychi/genome/GRCh38/bwa_mem2_index/genome.fa # bwa_mem2 index file, bwa_mem 1, 2 index not compatible
-  snp: /share/home/ychi/software/snp_file/gm12878/NA12878.phased_SNP.tsv
-  par: /share/home/ychi/software/GRCh38.chrY.PAR.bed
-  star: /share/home/ychi/software/star_index
-  annotation: /share/home/ychi/software/gencode.v33.primary_assembly.annotation.gtf
-ana_home: /share/Data/ychi/repo/bicell # home directory for all result files
+  bwa: /share/Data/ychi/genome/GRCh37d5/bwa_mem2_index/genome.fa # bwa_mem2 index file, bwa_mem 1, 2 index not compatible
+  snp: /share/Data/ychi/genome/GRCh37d5/GM12878.hg19.snp.tsv
+  par: /share/Data/ychi/genome/GRCh37d5/hg19.PAR.bed
+  annotation: /share/Data/ychi/genome/GRCh37d5/raw/gencode.v19.annotation.gtf.gz
 cpu: # threads using
   bwa: 8
   clean1: 8
   clean2: 8 
+# --- labels must change every time ---
+ana_home: /share/Data/ychi/repo/task_id # home directory for all result files
+sex: female # male | female, sex of sample, required for sam2seg
+snp: using # using | *, whether got snp file, required for sam2seg
