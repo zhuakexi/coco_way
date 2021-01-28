@@ -69,8 +69,10 @@ include: "rules/impute.smk"
 include: "rules/sep_clean.smk"
 include: "rules/build.smk"
 #include: "rules/align3d.smk"
+include: "rules/collect_info.smk"
 rule All:
     input:
         #expand(rules.build.output, sample=pep.sample_table["sample_name"], rep=list(range(1,6))),
         #expand(rules.impute.output, sample=pep.sample_table["sample_name"]),
-        expand(rules.pairs_info.output, sample=sample_table.index)
+        #expand(rules.pairs_info.output, sample=sample_table.index),
+        rules.collect_info.output
