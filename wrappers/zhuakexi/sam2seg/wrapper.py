@@ -31,7 +31,7 @@ if snp == "using":
         shell(
             " {k8} {js} sam2seg -v {snp_file} {input} 2> {log} " 
             " | {k8} {js} chronly - "
-            " | {k8} {js} bedflt {input.par} - "
+            " | {k8} {js} bedflt {par_file} - "
             " | sed 's/-/+/g' "
             " gzip > {output} "
             )
@@ -49,7 +49,7 @@ else: # without snp, no impute either
         shell(
            " {k8} {js} sam2seg {input} 2> {log} " 
             " | {k8} {js} chronly -"
-            " | {k8} {js} bedflt {input.par} - "
+            " | {k8} {js} bedflt {par_file} - "
             " | sed 's/-/+/g' "
             " | gzip > {output} " 
         )
