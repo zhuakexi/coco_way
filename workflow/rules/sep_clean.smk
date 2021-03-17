@@ -14,5 +14,5 @@ rule sep_clean:
     message: " ------> sep_clean: {wildcards.sample} : {threads} cores"
     shell:
         """
-        python3 {hires} sep_clean -n {threads} -i {input} -o1 {output.hap} -o2 {output.impute_c} 2> {log.log} 1>{log.result}
+        python3 {hires} sep_clean -n {threads} -o1 {output.hap} -o2 {output.impute_c} {input} 2> {log.log} 1>{log.result}
         """
