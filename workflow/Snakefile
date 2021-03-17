@@ -9,7 +9,7 @@ def log_path(file):
     return os.path.join(ana_home, "logs", "{sample}", file)
 def get_raw_fq(wildcards):
     sample = wildcards.sample
-    R1_path = sample_table.loc[sample, "R1_file"],
+    R1_path = sample_table.loc[sample, "R1_file"]
     R2_path = sample_table.loc[sample, "R2_file"]
     return {"R1":R1_path, "R2":R2_path}
 rule count_reads:
