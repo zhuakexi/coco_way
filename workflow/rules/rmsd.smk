@@ -5,7 +5,7 @@ rule rmsd:
         expand(
             rules.clean3d.output._3dg_50k, 
             sample="{sample}", 
-            rep=list(range(1,5))
+            rep=list(range(1,6))
             )
     output:
         os.path.join(ana_home, "rmsd", "{sample}.rmsd.info")
