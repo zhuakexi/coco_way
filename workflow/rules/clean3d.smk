@@ -6,7 +6,7 @@ rule clean3d:
     input:
         _3dg_1m = in_tp.format("1m"),
         _3dg_200k = in_tp.format("200k"),
-        _3dg_50k = in_tp.format("50k")
+        _3dg_50k = in_tp.format("50k"),
         pairs = rules.sep_clean.output.dip
     output:
         _3dg_1m = out_tp.format("1m"),
