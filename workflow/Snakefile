@@ -77,7 +77,7 @@ rule All:
         expand(rules.build.output, sample=sample_table.index, rep=list(range(1,6))),
         expand(rules.clean3d.output, sample=sample_table.index, rep=list(range(1,6))),
         expand(rules.rmsd.output, sample=sample_table.index),
-        expand(rules.vis.output, sample=sample_table.index, rep=list(range(1,6))),
+        expand(rules.cif.output, sample=sample_table.index, rep=list(range(1,6))),
         expand(rules.impute.output, sample=sample_table.index),
         expand(rules.pairs_info.output, sample=sample_table.index),
         rules.collect_info.output
