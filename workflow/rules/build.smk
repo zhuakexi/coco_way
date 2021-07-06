@@ -6,8 +6,8 @@ rule build:
     output:
         _3dg_1m = tp.format("1m"),
         _3dg_200k = tp.format("200k"),
-        _3dg_50k = tp.format("50k"),
-        _3dg_20k = tp.format("20k")
+        _3dg_50k = tp.format("50k")
+        # _3dg_20k = tp.format("20k")
     log:
         log_path("build.{rep}.log")
     threads: 1
@@ -20,5 +20,5 @@ rule build:
             -b4m -b1m -O {output._3dg_1m} \
             -b200k -O {output._3dg_200k} \
             -D5 -b50k -O {output._3dg_50k} \
-            -D5 -b20k -O {output._3dg_20k} 2> {log}
+            2> {log}
         """
