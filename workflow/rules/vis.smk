@@ -13,6 +13,6 @@ rule cif:
     shell:
         """
         python {hires} mmcif \
-            -i {input}
+            -i {input} \
             -o {output} 
         """
