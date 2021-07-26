@@ -3,6 +3,7 @@ import pandas as pd
 
 configfile: "config/config.yaml"
 ana_home = config["ana_home"] # home directory of all analysis results
+rd = os.path.join(ana_home,"rd") # dir to store key-value json
 sample_table = pd.read_csv("config/sample_table.csv", index_col=0)
 
 def log_path(file):
