@@ -2,7 +2,7 @@ software: # temp workaround only, using conda build in the future
   hickit: /share/home/ychi/software/hickit/hickit
   k8: /share/home/ychi/software/hickit/k8
   js: /share/home/ychi/software/hickit/hickit.js
-  hires: /share/home/ychi/software/hires-utils/hires.py
+  hires: /share/home/ychi/software/hires_utils
 ref:
   bwa: /share/Data/ychi/genome/GRCh37d5/bwa_mem2_index/genome.fa # bwa_mem2 index file, bwa_mem 1, 2 index not compatible
   snp: /share/Data/ychi/genome/GRCh37d5/GM12878.hg19.snp.tsv
